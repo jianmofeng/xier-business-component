@@ -1,0 +1,51 @@
+{
+  "name": "smarty-ui-vite",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs --port 8000",
+    "lint-staged": "npx lint-staged",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,vue}": [
+      "prettier --write",
+      "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@arco-design/web-vue": "^2.36.1",
+    "@iconify-json/ic": "1.1.4",
+    "@vitejs/plugin-vue": "3.0.3",
+    "@vitejs/plugin-vue-jsx": "2.0.0",
+    "axios": "^0.27.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^11.2.6",
+    "unocss": "0.44.5",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-vue-components": "^0.22.7",
+    "vite": "3.0.7",
+    "vitepress": "0.22.4",
+    "vitepress-theme-demoblock": "1.4.2"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.2.39",
+    "ant-design-vue": "^3.2.12",
+    "vue": "3.2.37"
+  }
+}
