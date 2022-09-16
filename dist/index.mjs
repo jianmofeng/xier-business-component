@@ -1,73 +1,4 @@
-import { defineComponent, createVNode, ref, reactive, inject, computed, getCurrentInstance, cloneVNode, watch, onMounted, onUnmounted, openBlock, createElementBlock, normalizeClass, renderSlot, normalizeStyle, createElementVNode, resolveComponent, createBlock, createCommentVNode, toRef, onUpdated, onBeforeUnmount, toRefs, provide, onDeactivated, Fragment, Teleport, mergeProps, Transition, withDirectives, vShow, nextTick, resolveDynamicComponent, withCtx, createTextVNode, toDisplayString, withModifiers, TransitionGroup, renderList, watchEffect, isVNode, unref } from "vue";
-const __uno = "";
-const props = {
-  size: {
-    type: String,
-    default: "medium"
-  },
-  color: {
-    type: String,
-    default: "blue"
-  },
-  round: {
-    type: Boolean,
-    default: false
-  },
-  plain: {
-    type: Boolean,
-    default: false
-  },
-  icon: {
-    type: String,
-    default: ""
-  }
-};
-const SButton = defineComponent({
-  name: "SButton",
-  props,
-  setup(props2, {
-    slots
-  }) {
-    var _a;
-    console.log(`html`, (_a = document.querySelector(`#app`)) == null ? void 0 : _a.innerHTML);
-    const size = {
-      small: {
-        x: "2",
-        y: "1",
-        text: "sm"
-      },
-      medium: {
-        x: "3",
-        y: "1.5",
-        text: "base"
-      },
-      large: {
-        x: "4",
-        y: "2",
-        text: "lg"
-      }
-    };
-    return () => createVNode("button", {
-      "class": `
-          py-${size[props2.size].y}
-          px-${size[props2.size].x}
-          ${props2.round ? "rounded-full" : "rounded-lg"}
-          bg-${props2.color}-${props2.plain ? "100" : "500"}
-          hover:bg-${props2.color}-400
-          border-${props2.color}-${props2.plain ? "500" : "500"}
-          cursor-pointer
-          border-solid
-          text-${props2.plain ? props2.color + "-500" : "white-500"}
-          text-${size[props2.size].text}
-          hover:text-white
-          transition duration-300 ease-in-out transform hover:scale-105
-          mx-1
-          `
-    }, [props2.icon !== "" ? createVNode("i", {
-      "class": `i-ic-baseline-${props2.icon} p-3`
-    }, null) : "", slots.default ? slots.default() : ""]);
-  }
-});
+import { ref, reactive, inject, computed, getCurrentInstance, cloneVNode, defineComponent, watch, onMounted, onUnmounted, openBlock, createElementBlock, normalizeClass, renderSlot, normalizeStyle, createElementVNode, resolveComponent, createBlock, createCommentVNode, toRef, onUpdated, onBeforeUnmount, toRefs, provide, onDeactivated, createVNode, Fragment, Teleport, mergeProps, Transition, withDirectives, vShow, nextTick, resolveDynamicComponent, withCtx, createTextVNode, toDisplayString, withModifiers, TransitionGroup, renderList, watchEffect, isVNode, unref } from "vue";
 const opt = Object.prototype.toString;
 function isArray(obj) {
   return opt.call(obj) === "[object Array]";
@@ -536,11 +467,11 @@ var ResizeObserverController = function() {
   ResizeObserverController2.instance_ = null;
   return ResizeObserverController2;
 }();
-var defineConfigurable = function(target2, props2) {
-  for (var _i = 0, _a = Object.keys(props2); _i < _a.length; _i++) {
+var defineConfigurable = function(target2, props) {
+  for (var _i = 0, _a = Object.keys(props); _i < _a.length; _i++) {
     var key = _a[_i];
     Object.defineProperty(target2, key, {
-      value: props2[key],
+      value: props[key],
       enumerable: false,
       writable: false,
       configurable: true
@@ -877,8 +808,8 @@ const mergeFirstChild = (children, extraProps) => {
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
       if (isElement(child) || isComponent(child)) {
-        const props2 = isFunction(extraProps) ? extraProps(child) : extraProps;
-        children[i] = cloneVNode(child, props2, true);
+        const props = isFunction(extraProps) ? extraProps(child) : extraProps;
+        children[i] = cloneVNode(child, props, true);
         return true;
       }
       const _children = getChildrenArray(child);
@@ -935,7 +866,7 @@ var ResizeObserver$1 = defineComponent({
   emits: [
     "resize"
   ],
-  setup(props2, {
+  setup(props, {
     emit,
     slots
   }) {
@@ -1055,8 +986,8 @@ const getRelativeRect = (target2, relative) => {
     height: targetRect.height
   };
 };
-var _export_sfc = (sfc, props2) => {
-  for (const [key, val] of props2) {
+var _export_sfc = (sfc, props) => {
+  for (const [key, val] of props) {
     sfc[key] = val;
   }
   return sfc;
@@ -1125,16 +1056,16 @@ const _sfc_main$f = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-close`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-close`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -1197,16 +1128,16 @@ const _sfc_main$e = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-check-circle-fill`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-check-circle-fill`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -1275,16 +1206,16 @@ const _sfc_main$d = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-exclamation-circle-fill`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-exclamation-circle-fill`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -1353,16 +1284,16 @@ const _sfc_main$c = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-close-circle-fill`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-close-circle-fill`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -1461,16 +1392,16 @@ const _sfc_main$b = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-loading`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-loading`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -1519,11 +1450,11 @@ const _sfc_main$a = defineComponent({
       type: String
     }
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("feedback-icon");
     const cls = computed(() => [
       prefixCls,
-      `${prefixCls}-status-${props2.type}`
+      `${prefixCls}-status-${props.type}`
     ]);
     return {
       cls
@@ -1647,16 +1578,16 @@ const _sfc_main$9 = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-search`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-search`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -2098,7 +2029,7 @@ var ResizeObserver = defineComponent({
   emits: [
     "resize"
   ],
-  setup(props2, { emit, slots }) {
+  setup(props, { emit, slots }) {
     const { children, firstElement } = useFirstElement();
     let resizeObserver;
     const createResizeObserver = (target2) => {
@@ -2462,18 +2393,18 @@ var _Trigger = defineComponent({
     "hide": () => true,
     "resize": () => true
   },
-  setup(props2, {
+  setup(props, {
     emit,
     slots,
     attrs
   }) {
     const {
       popupContainer
-    } = toRefs(props2);
+    } = toRefs(props);
     const prefixCls = getPrefixCls("trigger");
     const popupAttrs = computed(() => omit(attrs, TRIGGER_EVENTS));
     const configCtx = inject(configProviderInjectionKey, void 0);
-    const triggerMethods = computed(() => [].concat(props2.trigger));
+    const triggerMethods = computed(() => [].concat(props.trigger));
     const childrenRefs = /* @__PURE__ */ new Set();
     const triggerCtx = inject(triggerInjectionKey, void 0);
     const {
@@ -2481,8 +2412,8 @@ var _Trigger = defineComponent({
       firstElement
     } = useFirstElement();
     const popupRef = ref();
-    const popupVisible = ref(props2.defaultPopupVisible);
-    const popupPosition = ref(props2.position);
+    const popupVisible = ref(props.defaultPopupVisible);
+    const popupPosition = ref(props.position);
     const popupStyle = ref({});
     const transformStyle = ref({});
     const arrowStyle = ref({});
@@ -2493,7 +2424,7 @@ var _Trigger = defineComponent({
     });
     const computedVisible = computed(() => {
       var _a;
-      return (_a = props2.popupVisible) != null ? _a : popupVisible.value;
+      return (_a = props.popupVisible) != null ? _a : popupVisible.value;
     });
     const {
       teleportContainer,
@@ -2517,7 +2448,7 @@ var _Trigger = defineComponent({
       }
     };
     const updateMousePosition = (e) => {
-      if (props2.alignPoint) {
+      if (props.alignPoint) {
         const {
           pageX,
           pageY
@@ -2533,7 +2464,7 @@ var _Trigger = defineComponent({
         return;
       }
       const containerRect = containerRef.value.getBoundingClientRect();
-      const triggerRect = props2.alignPoint ? {
+      const triggerRect = props.alignPoint ? {
         top: mousePosition.value.top,
         bottom: mousePosition.value.top,
         left: mousePosition.value.left,
@@ -2549,29 +2480,29 @@ var _Trigger = defineComponent({
       const {
         style,
         position
-      } = getPopupStyle(props2.position, containerRect, triggerRect, popupRect, {
-        offset: props2.popupOffset,
-        translate: props2.popupTranslate,
-        customStyle: props2.popupStyle,
-        autoFitPosition: props2.autoFitPosition
+      } = getPopupStyle(props.position, containerRect, triggerRect, popupRect, {
+        offset: props.popupOffset,
+        translate: props.popupTranslate,
+        customStyle: props.popupStyle,
+        autoFitPosition: props.autoFitPosition
       });
-      if (props2.autoFitTransformOrigin) {
+      if (props.autoFitTransformOrigin) {
         transformStyle.value = {
           transformOrigin: getTransformOrigin(position)
         };
       }
-      if (props2.autoFitPopupMinWidth) {
+      if (props.autoFitPopupMinWidth) {
         style.minWidth = `${triggerRect.width}px`;
-      } else if (props2.autoFitPopupWidth) {
+      } else if (props.autoFitPopupWidth) {
         style.width = `${triggerRect.width}px`;
       }
       if (popupPosition.value !== position) {
         popupPosition.value = position;
       }
       popupStyle.value = style;
-      if (props2.showArrow) {
+      if (props.showArrow) {
         arrowStyle.value = getArrowStyle(position, triggerRect, popupRect, {
-          customStyle: props2.arrowStyle
+          customStyle: props.arrowStyle
         });
       }
     };
@@ -2601,7 +2532,7 @@ var _Trigger = defineComponent({
     const handleClick = (e) => {
       var _a;
       (_a = attrs.onClick) == null ? void 0 : _a.call(attrs, e);
-      if (props2.disabled || computedVisible.value && !props2.clickToClose) {
+      if (props.disabled || computedVisible.value && !props.clickToClose) {
         return;
       }
       if (triggerMethods.value.includes("click")) {
@@ -2614,11 +2545,11 @@ var _Trigger = defineComponent({
     const handleMouseEnter = (e) => {
       var _a;
       (_a = attrs.onMouseenter) == null ? void 0 : _a.call(attrs, e);
-      if (props2.disabled || !triggerMethods.value.includes("hover")) {
+      if (props.disabled || !triggerMethods.value.includes("hover")) {
         return;
       }
       updateMousePosition(e);
-      changeVisible(true, props2.mouseEnterDelay);
+      changeVisible(true, props.mouseEnterDelay);
     };
     const handleMouseEnterWithContext = (e) => {
       triggerCtx == null ? void 0 : triggerCtx.onMouseenter(e);
@@ -2627,10 +2558,10 @@ var _Trigger = defineComponent({
     const handleMouseLeave = (e) => {
       var _a;
       (_a = attrs.onMouseleave) == null ? void 0 : _a.call(attrs, e);
-      if (props2.disabled || !triggerMethods.value.includes("hover")) {
+      if (props.disabled || !triggerMethods.value.includes("hover")) {
         return;
       }
-      changeVisible(false, props2.mouseLeaveDelay);
+      changeVisible(false, props.mouseLeaveDelay);
     };
     const handleMouseLeaveWithContext = (e) => {
       triggerCtx == null ? void 0 : triggerCtx.onMouseleave(e);
@@ -2639,18 +2570,18 @@ var _Trigger = defineComponent({
     const handleFocusin = (e) => {
       var _a;
       (_a = attrs.onFocusin) == null ? void 0 : _a.call(attrs, e);
-      if (props2.disabled || !triggerMethods.value.includes("focus")) {
+      if (props.disabled || !triggerMethods.value.includes("focus")) {
         return;
       }
-      changeVisible(true, props2.focusDelay);
+      changeVisible(true, props.focusDelay);
     };
     const handleFocusout = (e) => {
       var _a;
       (_a = attrs.onFocusout) == null ? void 0 : _a.call(attrs, e);
-      if (props2.disabled || !triggerMethods.value.includes("focus")) {
+      if (props.disabled || !triggerMethods.value.includes("focus")) {
         return;
       }
-      if (!props2.blurToClose) {
+      if (!props.blurToClose) {
         return;
       }
       changeVisible(false);
@@ -2658,7 +2589,7 @@ var _Trigger = defineComponent({
     const handleContextmenu = (e) => {
       var _a;
       (_a = attrs.onContextmenu) == null ? void 0 : _a.call(attrs, e);
-      if (props2.disabled || !triggerMethods.value.includes("contextMenu") || computedVisible.value && !props2.clickToClose) {
+      if (props.disabled || !triggerMethods.value.includes("contextMenu") || computedVisible.value && !props.clickToClose) {
         return;
       }
       updateMousePosition(e);
@@ -2686,7 +2617,7 @@ var _Trigger = defineComponent({
     const contentSlot = usePickSlots(slots, "content");
     const hidePopup = computed(() => {
       var _a;
-      return props2.hideEmpty && isEmptyChildren((_a = contentSlot.value) == null ? void 0 : _a.call(contentSlot));
+      return props.hideEmpty && isEmptyChildren((_a = contentSlot.value) == null ? void 0 : _a.call(contentSlot));
     });
     const handleOutsideClick = (e) => {
       var _a, _b, _c;
@@ -2716,17 +2647,17 @@ var _Trigger = defineComponent({
       emit("resize");
     };
     const handlePopupMouseDown = (e) => {
-      if (props2.preventFocus) {
+      if (props.preventFocus) {
         e.preventDefault();
       }
     };
     triggerCtx == null ? void 0 : triggerCtx.addChildRef(popupRef);
     const triggerCls = computed(() => {
-      return computedVisible.value ? props2.openedClass : void 0;
+      return computedVisible.value ? props.openedClass : void 0;
     });
     let scrollElements;
     watch(computedVisible, (value) => {
-      if (props2.clickOutsideToClose) {
+      if (props.clickOutsideToClose) {
         if (!value && outsideListener) {
           removeOutsideListener();
         } else if (value && !outsideListener) {
@@ -2734,7 +2665,7 @@ var _Trigger = defineComponent({
           outsideListener = true;
         }
       }
-      if (props2.updateAtScroll || (configCtx == null ? void 0 : configCtx.updateAtScroll)) {
+      if (props.updateAtScroll || (configCtx == null ? void 0 : configCtx.updateAtScroll)) {
         if (value) {
           scrollElements = getScrollElements(firstElement.value);
           for (const item of scrollElements) {
@@ -2751,7 +2682,7 @@ var _Trigger = defineComponent({
         mounted.value = true;
       }
     });
-    watch(() => [props2.autoFitPopupWidth, props2.autoFitPopupMinWidth], () => {
+    watch(() => [props.autoFitPopupWidth, props.autoFitPopupMinWidth], () => {
       if (computedVisible.value) {
         updatePopupStyle();
       }
@@ -2767,11 +2698,11 @@ var _Trigger = defineComponent({
       createResizeObserver();
       if (computedVisible.value) {
         updatePopupStyle();
-        if (props2.clickOutsideToClose && !outsideListener) {
+        if (props.clickOutsideToClose && !outsideListener) {
           on(document.documentElement, "mousedown", handleOutsideClick);
           outsideListener = true;
         }
-        if (props2.updateAtScroll || (configCtx == null ? void 0 : configCtx.updateAtScroll)) {
+        if (props.updateAtScroll || (configCtx == null ? void 0 : configCtx.updateAtScroll)) {
           scrollElements = getScrollElements(firstElement.value);
           for (const item of scrollElements) {
             item.addEventListener("scroll", handleScroll);
@@ -2830,16 +2761,16 @@ var _Trigger = defineComponent({
         onFocusout: handleFocusout,
         onContextmenu: handleContextmenu
       });
-      return createVNode(Fragment, null, [props2.autoFixPosition ? createVNode(ResizeObserver, {
+      return createVNode(Fragment, null, [props.autoFixPosition ? createVNode(ResizeObserver, {
         "onResize": onTargetResize
       }, {
         default: () => [children.value]
       }) : children.value, createVNode(ClientOnly, null, {
         default: () => [createVNode(Teleport, {
           "to": teleportContainer.value,
-          "disabled": !props2.renderToBody
+          "disabled": !props.renderToBody
         }, {
-          default: () => [(!props2.unmountOnClose || computedVisible.value || mounted.value) && !hidePopup.value && createVNode(ResizeObserver, {
+          default: () => [(!props.unmountOnClose || computedVisible.value || mounted.value) && !hidePopup.value && createVNode(ResizeObserver, {
             "onResize": handleResize
           }, {
             default: () => [createVNode("div", mergeProps({
@@ -2854,8 +2785,8 @@ var _Trigger = defineComponent({
               "onMouseleave": handleMouseLeaveWithContext,
               "onMousedown": handlePopupMouseDown
             }, popupAttrs.value), [createVNode(Transition, {
-              "name": props2.animationName,
-              "duration": props2.duration,
+              "name": props.animationName,
+              "duration": props.duration,
               "appear": true,
               "onBeforeEnter": onAnimationStart,
               "onAfterEnter": handleShow,
@@ -2868,11 +2799,11 @@ var _Trigger = defineComponent({
                   "class": `${prefixCls}-popup-wrapper`,
                   "style": transformStyle.value
                 }, [createVNode("div", {
-                  "class": [`${prefixCls}-content`, props2.contentClass],
-                  "style": props2.contentStyle
-                }, [(_a2 = slots.content) == null ? void 0 : _a2.call(slots)]), props2.showArrow && createVNode("div", {
+                  "class": [`${prefixCls}-content`, props.contentClass],
+                  "style": props.contentStyle
+                }, [(_a2 = slots.content) == null ? void 0 : _a2.call(slots)]), props.showArrow && createVNode("div", {
                   "ref": arrowRef,
-                  "class": [`${prefixCls}-arrow`, props2.arrowClass],
+                  "class": [`${prefixCls}-arrow`, props.arrowClass],
                   "style": arrowStyle.value
                 }, null)]), [[vShow, computedVisible.value]])];
               }
@@ -2917,16 +2848,16 @@ const _sfc_main$8 = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-empty`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-empty`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -2968,7 +2899,7 @@ var _Empty = defineComponent({
     description: String,
     imgSrc: String
   },
-  setup(props2, {
+  setup(props, {
     slots
   }) {
     const prefixCls = getPrefixCls("empty");
@@ -2985,12 +2916,12 @@ var _Empty = defineComponent({
         "class": prefixCls
       }, [createVNode("div", {
         "class": `${prefixCls}-image`
-      }, [(_b = (_a = slots.image) == null ? void 0 : _a.call(slots)) != null ? _b : props2.imgSrc ? createVNode("img", {
-        "src": props2.imgSrc,
-        "alt": props2.description || "empty"
+      }, [(_b = (_a = slots.image) == null ? void 0 : _a.call(slots)) != null ? _b : props.imgSrc ? createVNode("img", {
+        "src": props.imgSrc,
+        "alt": props.description || "empty"
       }, null) : createVNode(IconEmpty, null, null)]), createVNode("div", {
         "class": `${prefixCls}-description`
-      }, [(_d = (_c = slots.default) == null ? void 0 : _c.call(slots)) != null ? _d : props2.description || t("empty.description")])]);
+      }, [(_d = (_c = slots.default) == null ? void 0 : _c.call(slots)) != null ? _d : props.description || t("empty.description")])]);
     };
   }
 });
@@ -3009,18 +2940,18 @@ var DotLoading = defineComponent({
       type: Number
     }
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("dot-loading");
     return () => {
-      const style = props2.size ? {
-        width: `${props2.size}px`,
-        height: `${props2.size}px`
+      const style = props.size ? {
+        width: `${props.size}px`,
+        height: `${props.size}px`
       } : {};
       return createVNode("div", {
         "class": prefixCls,
         "style": {
-          width: props2.size ? `${props2.size * 7}px` : void 0,
-          height: props2.size ? `${props2.size}px` : void 0
+          width: props.size ? `${props.size * 7}px` : void 0,
+          height: props.size ? `${props.size}px` : void 0
         }
       }, [Array(DOT_NUMBER).fill(1).map((_, index2) => createVNode("div", {
         "class": `${prefixCls}-item`,
@@ -3040,14 +2971,14 @@ var _Spin = defineComponent({
     dot: Boolean,
     tip: String
   },
-  setup(props2, {
+  setup(props, {
     slots
   }) {
     const prefixCls = getPrefixCls("spin");
     const configCtx = inject(configProviderInjectionKey, void 0);
     const cls = computed(() => [prefixCls, {
-      [`${prefixCls}-loading`]: props2.loading,
-      [`${prefixCls}-with-tip`]: props2.tip && !slots.default
+      [`${prefixCls}-loading`]: props.loading,
+      [`${prefixCls}-with-tip`]: props.tip && !slots.default
     }]);
     const renderIcon = () => {
       if (slots.icon) {
@@ -3061,9 +2992,9 @@ var _Spin = defineComponent({
       if (slots.element) {
         return slots.element();
       }
-      if (props2.dot) {
+      if (props.dot) {
         return createVNode(DotLoading, {
-          "size": props2.size
+          "size": props.size
         }, null);
       }
       if (configCtx == null ? void 0 : configCtx.slots.loading) {
@@ -3074,19 +3005,19 @@ var _Spin = defineComponent({
       }, null);
     };
     const renderSpinIcon = () => {
-      const style = props2.size ? {
-        fontSize: `${props2.size}px`
+      const style = props.size ? {
+        fontSize: `${props.size}px`
       } : void 0;
       return createVNode(Fragment, null, [createVNode("div", {
         "class": `${prefixCls}-icon`,
         "style": style
-      }, [renderIcon()]), props2.tip && createVNode("div", {
+      }, [renderIcon()]), props.tip && createVNode("div", {
         "class": `${prefixCls}-tip`
-      }, [props2.tip])]);
+      }, [props.tip])]);
     };
     return () => createVNode("div", {
       "class": cls.value
-    }, [slots.default ? createVNode(Fragment, null, [slots.default(), props2.loading && createVNode("div", {
+    }, [slots.default ? createVNode(Fragment, null, [slots.default(), props.loading && createVNode("div", {
       "class": `${prefixCls}-mask`
     }, [createVNode("div", {
       "class": `${prefixCls}-mask-icon`
@@ -3122,13 +3053,13 @@ const _sfc_main$7 = defineComponent({
     }
   },
   emits: ["scroll", "reachBottom"],
-  setup(props2, { emit, slots }) {
+  setup(props, { emit, slots }) {
     const prefixCls = getPrefixCls("select-dropdown");
     const wrapperRef = ref();
     const handleScroll = (e) => {
       const { scrollTop, scrollHeight, offsetHeight } = e.target;
       const bottom = scrollHeight - (scrollTop + offsetHeight);
-      if (bottom <= props2.bottomOffset) {
+      if (bottom <= props.bottomOffset) {
         emit("reachBottom", e);
       }
       emit("scroll", e);
@@ -3240,16 +3171,16 @@ var _Checkbox = defineComponent({
     "update:modelValue": (value) => true,
     "change": (value, ev) => true
   },
-  setup(props2, {
+  setup(props, {
     emit,
     slots
   }) {
     const {
       disabled
-    } = toRefs(props2);
+    } = toRefs(props);
     const prefixCls = getPrefixCls("checkbox");
     const checkboxRef = ref();
-    const checkboxGroupCtx = !props2.uninjectGroupContext ? inject(checkboxGroupKey, void 0) : void 0;
+    const checkboxGroupCtx = !props.uninjectGroupContext ? inject(checkboxGroupKey, void 0) : void 0;
     const isGroup = (checkboxGroupCtx == null ? void 0 : checkboxGroupCtx.name) === "ArcoCheckboxGroup";
     const {
       mergedDisabled: _mergedDisabled,
@@ -3257,14 +3188,14 @@ var _Checkbox = defineComponent({
     } = useFormItem({
       disabled
     });
-    const _checked = ref(props2.defaultChecked);
+    const _checked = ref(props.defaultChecked);
     const computedValue = computed(() => {
       var _a;
-      return isGroup ? checkboxGroupCtx == null ? void 0 : checkboxGroupCtx.computedValue : (_a = props2.modelValue) != null ? _a : _checked.value;
+      return isGroup ? checkboxGroupCtx == null ? void 0 : checkboxGroupCtx.computedValue : (_a = props.modelValue) != null ? _a : _checked.value;
     });
     const computedChecked = computed(() => {
       var _a;
-      return isArray(computedValue.value) ? computedValue.value.includes((_a = props2.value) != null ? _a : true) : computedValue.value;
+      return isArray(computedValue.value) ? computedValue.value.includes((_a = props.value) != null ? _a : true) : computedValue.value;
     });
     const mergedDisabled = computed(() => (checkboxGroupCtx == null ? void 0 : checkboxGroupCtx.disabled) || (_mergedDisabled == null ? void 0 : _mergedDisabled.value) || !computedChecked.value && (checkboxGroupCtx == null ? void 0 : checkboxGroupCtx.isMaxed));
     const handleClick = (ev) => {
@@ -3279,9 +3210,9 @@ var _Checkbox = defineComponent({
       if (isArray(computedValue.value)) {
         const set = new Set(computedValue.value);
         if (checked) {
-          set.add((_a = props2.value) != null ? _a : true);
+          set.add((_a = props.value) != null ? _a : true);
         } else {
-          set.delete((_b = props2.value) != null ? _b : true);
+          set.delete((_b = props.value) != null ? _b : true);
         }
         newValue = Array.from(set);
       }
@@ -3301,7 +3232,7 @@ var _Checkbox = defineComponent({
     };
     const cls = computed(() => [prefixCls, {
       [`${prefixCls}-checked`]: computedChecked.value,
-      [`${prefixCls}-indeterminate`]: props2.indeterminate,
+      [`${prefixCls}-indeterminate`]: props.indeterminate,
       [`${prefixCls}-disabled`]: mergedDisabled.value
     }]);
     const handleFocus = (ev) => {
@@ -3316,7 +3247,7 @@ var _Checkbox = defineComponent({
       var _a;
       let checked;
       if (isArray(value)) {
-        checked = value.includes((_a = props2.value) != null ? _a : true);
+        checked = value.includes((_a = props.value) != null ? _a : true);
       } else {
         checked = value;
       }
@@ -3336,7 +3267,7 @@ var _Checkbox = defineComponent({
         "ref": checkboxRef,
         "type": "checkbox",
         "checked": computedChecked.value,
-        "value": props2.value,
+        "value": props.value,
         "class": `${prefixCls}-target`,
         "disabled": mergedDisabled.value,
         "onClick": handleClick,
@@ -3391,13 +3322,13 @@ var CheckboxGroup = defineComponent({
     "update:modelValue": (value) => true,
     "change": (value, ev) => true
   },
-  setup(props2, {
+  setup(props, {
     emit,
     slots
   }) {
     const {
       disabled
-    } = toRefs(props2);
+    } = toRefs(props);
     const prefixCls = getPrefixCls("checkbox-group");
     const {
       mergedDisabled,
@@ -3405,15 +3336,15 @@ var CheckboxGroup = defineComponent({
     } = useFormItem({
       disabled
     });
-    const _value = ref(props2.defaultValue);
+    const _value = ref(props.defaultValue);
     const computedValue = computed(() => {
       var _a;
-      return (_a = props2.modelValue) != null ? _a : _value.value;
+      return (_a = props.modelValue) != null ? _a : _value.value;
     });
-    const isMaxed = computed(() => props2.max === void 0 ? false : computedValue.value.length >= props2.max);
+    const isMaxed = computed(() => props.max === void 0 ? false : computedValue.value.length >= props.max);
     const options = computed(() => {
       var _a;
-      return ((_a = props2.options) != null ? _a : []).map((option) => {
+      return ((_a = props.options) != null ? _a : []).map((option) => {
         if (isString(option) || isNumber(option)) {
           return {
             label: option,
@@ -3438,8 +3369,8 @@ var CheckboxGroup = defineComponent({
       slots,
       handleChange
     }));
-    const cls = computed(() => [prefixCls, `${prefixCls}-direction-${props2.direction}`]);
-    watch(() => props2.modelValue, (curValue) => {
+    const cls = computed(() => [prefixCls, `${prefixCls}-direction-${props.direction}`]);
+    watch(() => props.modelValue, (curValue) => {
       if (curValue) {
         _value.value = [...curValue];
       }
@@ -3683,8 +3614,8 @@ const _sfc_main$6 = defineComponent({
     },
     internal: Boolean
   },
-  setup(props2) {
-    const { disabled, tagProps: _tagProps, index: index2 } = toRefs(props2);
+  setup(props) {
+    const { disabled, tagProps: _tagProps, index: index2 } = toRefs(props);
     const prefixCls = getPrefixCls("select-option");
     const selectCtx = inject(selectInjectionKey, void 0);
     const instance = getCurrentInstance();
@@ -3698,11 +3629,11 @@ const _sfc_main$6 = defineComponent({
     const textContent = ref("");
     const value = computed(() => {
       var _a, _b;
-      return (_b = (_a = props2.value) != null ? _a : props2.label) != null ? _b : textContent.value;
+      return (_b = (_a = props.value) != null ? _a : props.label) != null ? _b : textContent.value;
     });
     const label = computed(() => {
       var _a;
-      return (_a = props2.label) != null ? _a : textContent.value;
+      return (_a = props.label) != null ? _a : textContent.value;
     });
     const key = computed(() => getKeyFromValue(value.value, selectCtx == null ? void 0 : selectCtx.valueKey));
     const component = computed(() => {
@@ -3711,7 +3642,7 @@ const _sfc_main$6 = defineComponent({
     });
     const setTextContent = () => {
       var _a;
-      if (!props2.label && itemRef.value) {
+      if (!props.label && itemRef.value) {
         const text = (_a = itemRef.value.textContent) != null ? _a : "";
         if (textContent.value !== text) {
           textContent.value = text;
@@ -3726,7 +3657,7 @@ const _sfc_main$6 = defineComponent({
     });
     const isActive = computed(() => (selectCtx == null ? void 0 : selectCtx.activeKey) === key.value);
     let isValid = ref(true);
-    if (!props2.internal) {
+    if (!props.internal) {
       const optionInfo = reactive({
         raw: {
           value,
@@ -3757,24 +3688,24 @@ const _sfc_main$6 = defineComponent({
       });
     }
     const handleClick = (ev) => {
-      if (!props2.disabled) {
+      if (!props.disabled) {
         selectCtx == null ? void 0 : selectCtx.onSelect(key.value, ev);
       }
     };
     const handleMouseEnter = () => {
-      if (!props2.disabled) {
+      if (!props.disabled) {
         selectCtx == null ? void 0 : selectCtx.setActiveKey(key.value);
       }
     };
     const handleMouseLeave = () => {
-      if (!props2.disabled) {
+      if (!props.disabled) {
         selectCtx == null ? void 0 : selectCtx.setActiveKey();
       }
     };
     const cls = computed(() => [
       prefixCls,
       {
-        [`${prefixCls}-disabled`]: props2.disabled,
+        [`${prefixCls}-disabled`]: props.disabled,
         [`${prefixCls}-active`]: isActive.value,
         [`${prefixCls}-multiple`]: selectCtx == null ? void 0 : selectCtx.multiple
       }
@@ -4220,16 +4151,16 @@ const _sfc_main$5 = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-down`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-down`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -4419,7 +4350,7 @@ var InputLabel = defineComponent({
     uninjectFormItemContext: Boolean
   },
   emits: ["update:inputValue", "inputValueChange", "focus", "blur"],
-  setup(props2, {
+  setup(props, {
     attrs,
     emit,
     slots
@@ -4431,8 +4362,8 @@ var InputLabel = defineComponent({
       error,
       inputValue,
       uninjectFormItemContext
-    } = toRefs(props2);
-    const prefixCls = (_a = props2.baseCls) != null ? _a : getPrefixCls("input-label");
+    } = toRefs(props);
+    const prefixCls = (_a = props.baseCls) != null ? _a : getPrefixCls("input-label");
     const {
       mergedSize: _mergedSize,
       mergedDisabled,
@@ -4465,26 +4396,26 @@ var InputLabel = defineComponent({
     });
     const mergedFocused = computed(() => {
       var _a2;
-      return (_a2 = props2.focused) != null ? _a2 : _focused.value;
+      return (_a2 = props.focused) != null ? _a2 : _focused.value;
     });
-    const showInput = computed(() => props2.enabledInput && _focused.value || !props2.modelValue);
+    const showInput = computed(() => props.enabledInput && _focused.value || !props.modelValue);
     const mergedPlaceholder = computed(() => {
-      if (props2.enabledInput && props2.modelValue) {
-        return props2.modelValue.label;
+      if (props.enabledInput && props.modelValue) {
+        return props.modelValue.label;
       }
-      return props2.placeholder;
+      return props.placeholder;
     });
     const renderLabel = () => {
       var _a2, _b, _c, _d, _e;
-      if (props2.modelValue) {
+      if (props.modelValue) {
         return (_e = (_c = (_a2 = slots.default) == null ? void 0 : _a2.call(slots, {
-          data: props2.modelValue
-        })) != null ? _c : (_b = props2.formatLabel) == null ? void 0 : _b.call(props2, props2.modelValue)) != null ? _e : (_d = props2.modelValue) == null ? void 0 : _d.label;
+          data: props.modelValue
+        })) != null ? _c : (_b = props.formatLabel) == null ? void 0 : _b.call(props, props.modelValue)) != null ? _e : (_d = props.modelValue) == null ? void 0 : _d.label;
       }
       return null;
     };
     const cls = computed(() => [prefixCls, `${prefixCls}-size-${mergedSize.value}`, {
-      [`${prefixCls}-search`]: props2.enabledInput,
+      [`${prefixCls}-search`]: props.enabledInput,
       [`${prefixCls}-focus`]: mergedFocused.value,
       [`${prefixCls}-disabled`]: mergedDisabled.value,
       [`${prefixCls}-error`]: mergedError.value
@@ -4502,7 +4433,7 @@ var InputLabel = defineComponent({
         [`${prefixCls}-input-hidden`]: !showInput.value
       }],
       "value": computedInputValue.value,
-      "readonly": !props2.enabledInput,
+      "readonly": !props.enabledInput,
       "placeholder": mergedPlaceholder.value,
       "disabled": mergedDisabled.value,
       "onInput": handleInput,
@@ -4645,20 +4576,20 @@ const _sfc_main$4 = defineComponent({
     "close": (ev) => true,
     "check": (checked, ev) => true
   },
-  setup(props2, { emit }) {
-    const { size } = toRefs(props2);
+  setup(props, { emit }) {
+    const { size } = toRefs(props);
     const prefixCls = getPrefixCls("tag");
-    const isBuiltInColor = computed(() => props2.color && TAG_COLORS.includes(props2.color));
-    const isCustomColor = computed(() => props2.color && !TAG_COLORS.includes(props2.color));
-    const _visible = ref(props2.defaultVisible);
-    const _checked = ref(props2.defaultChecked);
+    const isBuiltInColor = computed(() => props.color && TAG_COLORS.includes(props.color));
+    const isCustomColor = computed(() => props.color && !TAG_COLORS.includes(props.color));
+    const _visible = ref(props.defaultVisible);
+    const _checked = ref(props.defaultChecked);
     const computedVisible = computed(() => {
       var _a;
-      return (_a = props2.visible) != null ? _a : _visible.value;
+      return (_a = props.visible) != null ? _a : _visible.value;
     });
     const computedChecked = computed(() => {
       var _a;
-      return props2.checkable ? (_a = props2.checked) != null ? _a : _checked.value : true;
+      return props.checkable ? (_a = props.checked) != null ? _a : _checked.value : true;
     });
     const { mergedSize: _mergedSize } = useSize$1(size);
     const mergedSize = computed(() => {
@@ -4673,7 +4604,7 @@ const _sfc_main$4 = defineComponent({
       emit("close", ev);
     };
     const handleClick = (ev) => {
-      if (props2.checkable) {
+      if (props.checkable) {
         const newChecked = !computedChecked.value;
         _checked.value = newChecked;
         emit("update:checked", newChecked);
@@ -4684,11 +4615,11 @@ const _sfc_main$4 = defineComponent({
       prefixCls,
       `${prefixCls}-size-${mergedSize.value}`,
       {
-        [`${prefixCls}-loading`]: props2.loading,
+        [`${prefixCls}-loading`]: props.loading,
         [`${prefixCls}-hide`]: !computedVisible.value,
-        [`${prefixCls}-${props2.color}`]: isBuiltInColor.value,
-        [`${prefixCls}-bordered`]: props2.bordered,
-        [`${prefixCls}-checkable`]: props2.checkable,
+        [`${prefixCls}-${props.color}`]: isBuiltInColor.value,
+        [`${prefixCls}-bordered`]: props.bordered,
+        [`${prefixCls}-checkable`]: props.checkable,
         [`${prefixCls}-checked`]: computedChecked.value,
         [`${prefixCls}-custom-color`]: isCustomColor.value
       }
@@ -4696,7 +4627,7 @@ const _sfc_main$4 = defineComponent({
     const style = computed(() => {
       if (isCustomColor.value) {
         return {
-          backgroundColor: props2.color
+          backgroundColor: props.color
         };
       }
       return void 0;
@@ -4852,7 +4783,7 @@ var _InputTag = defineComponent({
     "focus": (ev) => true,
     "blur": (ev) => true
   },
-  setup(props2, {
+  setup(props, {
     emit,
     slots,
     attrs
@@ -4863,8 +4794,8 @@ var _InputTag = defineComponent({
       error,
       uninjectFormItemContext,
       modelValue
-    } = toRefs(props2);
-    const prefixCls = props2.baseCls || getPrefixCls("input-tag");
+    } = toRefs(props);
+    const prefixCls = props.baseCls || getPrefixCls("input-tag");
     const inputRef = ref();
     const mirrorRef = ref();
     const {
@@ -4882,28 +4813,28 @@ var _InputTag = defineComponent({
     const {
       mergedSize
     } = useSize$1(_mergedSize);
-    const mergedFieldNames = computed(() => __spreadValues$2(__spreadValues$2({}, DEFAULT_FIELD_NAMES$1), props2.fieldNames));
+    const mergedFieldNames = computed(() => __spreadValues$2(__spreadValues$2({}, DEFAULT_FIELD_NAMES$1), props.fieldNames));
     const _focused = ref(false);
-    const _value = ref(props2.defaultValue);
-    const _inputValue = ref(props2.defaultInputValue);
+    const _value = ref(props.defaultValue);
+    const _inputValue = ref(props.defaultInputValue);
     const isComposition = ref(false);
     const compositionValue = ref("");
     const retainInputValue = computed(() => {
-      if (isObject(props2.retainInputValue)) {
+      if (isObject(props.retainInputValue)) {
         return __spreadValues$2({
           create: false,
           blur: false
-        }, props2.retainInputValue);
+        }, props.retainInputValue);
       }
       return {
-        create: props2.retainInputValue,
-        blur: props2.retainInputValue
+        create: props.retainInputValue,
+        blur: props.retainInputValue
       };
     });
     const inputStyle = reactive({
       width: "12px"
     });
-    const mergedFocused = computed(() => props2.focused || _focused.value);
+    const mergedFocused = computed(() => props.focused || _focused.value);
     const updateInputValue = (value, ev) => {
       _inputValue.value = value;
       emit("update:inputValue", value);
@@ -4930,11 +4861,11 @@ var _InputTag = defineComponent({
     };
     const computedValue = computed(() => {
       var _a;
-      return (_a = props2.modelValue) != null ? _a : _value.value;
+      return (_a = props.modelValue) != null ? _a : _value.value;
     });
     const computedInputValue = computed(() => {
       var _a;
-      return (_a = props2.inputValue) != null ? _a : _inputValue.value;
+      return (_a = props.inputValue) != null ? _a : _inputValue.value;
     });
     watch(modelValue, (value) => {
       if (isUndefined(value) || isNull(value)) {
@@ -4962,10 +4893,10 @@ var _InputTag = defineComponent({
     };
     const valueData = computed(() => getValueData(computedValue.value, mergedFieldNames.value));
     const tags = computed(() => {
-      if (props2.maxTagCount > 0) {
-        const invisibleTags = valueData.value.length - props2.maxTagCount;
+      if (props.maxTagCount > 0) {
+        const invisibleTags = valueData.value.length - props.maxTagCount;
         if (invisibleTags > 0) {
-          const result = valueData.value.slice(0, props2.maxTagCount);
+          const result = valueData.value.slice(0, props.maxTagCount);
           const raw = {
             value: "__arco__more",
             label: `+${invisibleTags}...`,
@@ -4997,12 +4928,12 @@ var _InputTag = defineComponent({
       updateValue(newValue, e);
       emit("clear", e);
     };
-    const showClearBtn = computed(() => !mergedDisabled.value && !props2.readonly && props2.allowClear && Boolean(computedValue.value.length));
+    const showClearBtn = computed(() => !mergedDisabled.value && !props.readonly && props.allowClear && Boolean(computedValue.value.length));
     const handlePressEnter = (e) => {
       var _a;
       if (computedInputValue.value) {
         e.preventDefault();
-        if (props2.uniqueValue && ((_a = computedValue.value) == null ? void 0 : _a.includes(computedInputValue.value))) {
+        if (props.uniqueValue && ((_a = computedValue.value) == null ? void 0 : _a.includes(computedInputValue.value))) {
           emit("pressEnter", computedInputValue.value, e);
           return;
         }
@@ -5063,10 +4994,10 @@ var _InputTag = defineComponent({
     });
     const cls = computed(() => [prefixCls, `${prefixCls}-size-${mergedSize.value}`, {
       [`${prefixCls}-disabled`]: mergedDisabled.value,
-      [`${prefixCls}-disabled-input`]: props2.disabledInput,
+      [`${prefixCls}-disabled-input`]: props.disabledInput,
       [`${prefixCls}-error`]: mergedError.value,
       [`${prefixCls}-focus`]: mergedFocused.value,
-      [`${prefixCls}-readonly`]: props2.readonly,
+      [`${prefixCls}-readonly`]: props.readonly,
       [`${prefixCls}-has-tag`]: tags.value.length > 0,
       [`${prefixCls}-has-prefix`]: Boolean(slots.prefix),
       [`${prefixCls}-has-suffix`]: Boolean(slots.suffix) || showClearBtn.value || feedback.value,
@@ -5085,7 +5016,7 @@ var _InputTag = defineComponent({
         default: () => [createVNode("span", {
           "ref": mirrorRef,
           "class": `${prefixCls}-mirror`
-        }, [tags.value.length > 0 ? compositionValue.value || computedInputValue.value : compositionValue.value || computedInputValue.value || props2.placeholder])]
+        }, [tags.value.length > 0 ? compositionValue.value || computedInputValue.value : compositionValue.value || computedInputValue.value || props.placeholder])]
       }), slots.prefix && createVNode("span", {
         "class": `${prefixCls}-prefix`
       }, [slots.prefix()]), createVNode(TransitionGroup, {
@@ -5096,7 +5027,7 @@ var _InputTag = defineComponent({
         default: () => [tags.value.map((item, index2) => createVNode(Tag, mergeProps({
           "key": `tag-${item.value}`,
           "class": `${prefixCls}-tag`,
-          "closable": !mergedDisabled.value && !props2.readonly && item.closable,
+          "closable": !mergedDisabled.value && !props.readonly && item.closable,
           "visible": true
         }, item.tagProps, {
           "onClose": (ev) => handleRemove(item.value, index2, ev)
@@ -5105,16 +5036,16 @@ var _InputTag = defineComponent({
             var _a2, _b, _c, _d;
             return [(_d = (_c = (_a2 = slots.tag) == null ? void 0 : _a2.call(slots, {
               data: item.raw
-            })) != null ? _c : (_b = props2.formatTag) == null ? void 0 : _b.call(props2, item.raw)) != null ? _d : item.label];
+            })) != null ? _c : (_b = props.formatTag) == null ? void 0 : _b.call(props, item.raw)) != null ? _d : item.label];
           }
         })), createVNode("input", mergeProps(inputAttrs.value, {
           "ref": inputRef,
           "key": "input-tag-input",
           "class": `${prefixCls}-input`,
           "style": inputStyle,
-          "placeholder": tags.value.length === 0 ? props2.placeholder : void 0,
+          "placeholder": tags.value.length === 0 ? props.placeholder : void 0,
           "disabled": mergedDisabled.value,
-          "readonly": props2.readonly || props2.disabledInput,
+          "readonly": props.readonly || props.disabledInput,
           "onInput": handleInput,
           "onKeydown": handleKeyDown,
           "onFocus": handleFocus,
@@ -5188,16 +5119,16 @@ const _sfc_main$3 = defineComponent({
     rotate: Number,
     spin: Boolean
   },
-  setup(props2) {
+  setup(props) {
     const prefixCls = getPrefixCls("icon");
-    const cls = computed(() => [prefixCls, `${prefixCls}-expand`, { [`${prefixCls}-spin`]: props2.spin }]);
+    const cls = computed(() => [prefixCls, `${prefixCls}-expand`, { [`${prefixCls}-spin`]: props.spin }]);
     const innerStyle = computed(() => {
       const styles = {};
-      if (props2.size) {
-        styles.fontSize = isNumber(props2.size) ? `${props2.size}px` : props2.size;
+      if (props.size) {
+        styles.fontSize = isNumber(props.size) ? `${props.size}px` : props.size;
       }
-      if (props2.rotate) {
-        styles.transform = `rotate(${props2.rotate}deg)`;
+      if (props.rotate) {
+        styles.transform = `rotate(${props.rotate}deg)`;
       }
       return styles;
     });
@@ -5279,7 +5210,7 @@ var SelectView = defineComponent({
     },
     allowSearch: {
       type: Boolean,
-      default: (props2) => isArray(props2.modelValue)
+      default: (props) => isArray(props.modelValue)
     },
     maxTagCount: {
       type: Number,
@@ -5291,7 +5222,7 @@ var SelectView = defineComponent({
     }
   },
   emits: ["remove", "clear", "focus", "blur"],
-  setup(props2, {
+  setup(props, {
     emit,
     slots
   }) {
@@ -5299,7 +5230,7 @@ var SelectView = defineComponent({
       size,
       disabled,
       error
-    } = toRefs(props2);
+    } = toRefs(props);
     const prefixCls = getPrefixCls("select-view");
     const {
       feedback,
@@ -5317,15 +5248,15 @@ var SelectView = defineComponent({
     } = useSize$1(_mergedSize);
     const {
       opened
-    } = toRefs(props2);
+    } = toRefs(props);
     const componentRef = ref();
     const inputRef = computed(() => {
       var _a;
       return (_a = componentRef.value) == null ? void 0 : _a.inputRef;
     });
-    const isEmptyValue = computed(() => props2.modelValue.length === 0);
-    const enabledInput = computed(() => props2.allowSearch || props2.allowCreate);
-    const showClearBtn = computed(() => props2.allowClear && !props2.disabled && !isEmptyValue.value);
+    const isEmptyValue = computed(() => props.modelValue.length === 0);
+    const enabledInput = computed(() => props.allowSearch || props.allowCreate);
+    const showClearBtn = computed(() => props.allowClear && !props.disabled && !isEmptyValue.value);
     const handleFocus = (ev) => {
       var _a, _b;
       emit("focus", ev);
@@ -5344,16 +5275,16 @@ var SelectView = defineComponent({
     };
     const renderIcon = () => {
       var _a, _b, _c, _d;
-      if (props2.loading) {
+      if (props.loading) {
         return (_b = (_a = slots["loading-icon"]) == null ? void 0 : _a.call(slots)) != null ? _b : createVNode(IconLoading, null, null);
       }
-      if (props2.allowSearch && props2.opened) {
+      if (props.allowSearch && props.opened) {
         return (_d = (_c = slots["search-icon"]) == null ? void 0 : _c.call(slots)) != null ? _d : createVNode(IconSearch, null, null);
       }
       if (slots["arrow-icon"]) {
         return slots["arrow-icon"]();
       }
-      if (props2.multiple || enabledInput.value) {
+      if (props.multiple || enabledInput.value) {
         return createVNode(IconExpand, {
           "style": {
             transform: "rotate(-45deg)"
@@ -5380,25 +5311,25 @@ var SelectView = defineComponent({
         inputRef.value.blur();
       }
     });
-    const cls = computed(() => [`${prefixCls}-${props2.multiple ? "multiple" : "single"}`, {
-      [`${prefixCls}-opened`]: props2.opened,
-      [`${prefixCls}-borderless`]: !props2.bordered
+    const cls = computed(() => [`${prefixCls}-${props.multiple ? "multiple" : "single"}`, {
+      [`${prefixCls}-opened`]: props.opened,
+      [`${prefixCls}-borderless`]: !props.bordered
     }]);
     const render = () => {
-      if (props2.multiple) {
+      if (props.multiple) {
         return createVNode(InputTag, {
           "ref": componentRef,
           "baseCls": prefixCls,
           "class": cls.value,
-          "modelValue": props2.modelValue,
-          "inputValue": props2.inputValue,
-          "focused": props2.opened,
-          "placeholder": props2.placeholder,
+          "modelValue": props.modelValue,
+          "inputValue": props.inputValue,
+          "focused": props.opened,
+          "placeholder": props.placeholder,
           "disabled": mergedDisabled.value,
           "size": mergedSize.value,
           "error": mergedError.value,
-          "maxTagCount": props2.maxTagCount,
-          "disabledInput": !props2.allowSearch && !props2.allowCreate,
+          "maxTagCount": props.maxTagCount,
+          "disabledInput": !props.allowSearch && !props.allowCreate,
           "retainInputValue": true,
           "uninjectFormItemContext": true,
           "onRemove": handleRemove,
@@ -5414,10 +5345,10 @@ var SelectView = defineComponent({
         "ref": componentRef,
         "baseCls": prefixCls,
         "class": cls.value,
-        "modelValue": props2.modelValue[0],
-        "inputValue": props2.inputValue,
-        "focused": props2.opened,
-        "placeholder": props2.placeholder,
+        "modelValue": props.modelValue[0],
+        "inputValue": props.inputValue,
+        "focused": props.opened,
+        "placeholder": props.placeholder,
         "disabled": mergedDisabled.value,
         "size": mergedSize.value,
         "error": mergedError.value,
@@ -5622,7 +5553,7 @@ var VirtualListItem = defineComponent({
       required: true
     }
   },
-  setup(props2, {
+  setup(props, {
     slots
   }) {
     var _a;
@@ -5631,8 +5562,8 @@ var VirtualListItem = defineComponent({
     const setItemSize = () => {
       var _a2, _b;
       const ele = (_b = (_a2 = itemRef.value) == null ? void 0 : _a2.$el) != null ? _b : itemRef.value;
-      if (!props2.hasItemSize(key) && (ele == null ? void 0 : ele.offsetHeight)) {
-        props2.setItemSize(key, ele.offsetHeight);
+      if (!props.hasItemSize(key) && (ele == null ? void 0 : ele.offsetHeight)) {
+        props.setItemSize(key, ele.offsetHeight);
       }
     };
     onMounted(() => setItemSize());
@@ -5715,19 +5646,19 @@ const _sfc_main$1 = defineComponent({
     scroll: (ev) => true,
     reachBottom: (ev) => true
   },
-  setup(props2, { emit }) {
-    const { data, itemKey, fixedSize, estimatedSize, buffer, height } = toRefs(props2);
+  setup(props, { emit }) {
+    const { data, itemKey, fixedSize, estimatedSize, buffer, height } = toRefs(props);
     const prefixCls = getPrefixCls("virtual-list");
     const mergedComponent = computed(() => {
-      if (isObject(props2.component)) {
+      if (isObject(props.component)) {
         return __spreadValues$1({
           container: "div",
           list: "div",
           content: "div"
-        }, props2.component);
+        }, props.component);
       }
       return {
-        container: props2.component,
+        container: props.component,
         list: "div",
         content: "div"
       };
@@ -5762,7 +5693,7 @@ const _sfc_main$1 = defineComponent({
       buffer
     });
     const currentList = computed(() => {
-      if (props2.threshold && data.value.length <= props2.threshold) {
+      if (props.threshold && data.value.length <= props.threshold) {
         return data.value;
       }
       return data.value.slice(start.value, end.value);
@@ -5912,7 +5843,7 @@ var _Select = defineComponent({
     },
     defaultValue: {
       type: [String, Number, Object, Array],
-      default: (props2) => isUndefined(props2.multiple) ? "" : []
+      default: (props) => isUndefined(props.multiple) ? "" : []
     },
     inputValue: {
       type: String
@@ -5943,7 +5874,7 @@ var _Select = defineComponent({
     },
     allowSearch: {
       type: [Boolean, Object],
-      default: (props2) => Boolean(props2.multiple)
+      default: (props) => Boolean(props.multiple)
     },
     allowCreate: {
       type: Boolean,
@@ -6031,7 +5962,7 @@ var _Select = defineComponent({
     "dropdownReachBottom": (ev) => true,
     "exceedLimit": (value, ev) => true
   },
-  setup(props2, {
+  setup(props, {
     slots,
     emit,
     attrs
@@ -6049,7 +5980,7 @@ var _Select = defineComponent({
       modelValue,
       fieldNames,
       loading
-    } = toRefs(props2);
+    } = toRefs(props);
     const prefixCls = getPrefixCls("select");
     const {
       mergedSize,
@@ -6061,13 +5992,13 @@ var _Select = defineComponent({
       disabled,
       error
     });
-    const component = computed(() => props2.virtualListProps ? "div" : "li");
-    const retainInputValue = computed(() => isObject(props2.allowSearch) && Boolean(props2.allowSearch.retainInputValue));
+    const component = computed(() => props.virtualListProps ? "div" : "li");
+    const retainInputValue = computed(() => isObject(props.allowSearch) && Boolean(props.allowSearch.retainInputValue));
     computed(() => {
-      if (isFunction(props2.formatLabel)) {
+      if (isFunction(props.formatLabel)) {
         return (data) => {
           const optionInfo = optionInfoMap.get(data.value);
-          return props2.formatLabel(optionInfo);
+          return props.formatLabel(optionInfo);
         };
       }
       return void 0;
@@ -6082,14 +6013,14 @@ var _Select = defineComponent({
       popupVisible,
       emit
     });
-    const _value = ref(props2.defaultValue);
+    const _value = ref(props.defaultValue);
     const computedValueObjects = computed(() => {
       var _a;
-      const mergedValue = (_a = props2.modelValue) != null ? _a : _value.value;
+      const mergedValue = (_a = props.modelValue) != null ? _a : _value.value;
       const valueArray = isArray(mergedValue) ? mergedValue : mergedValue || isNumber(mergedValue) ? [mergedValue] : [];
       return valueArray.map((value) => ({
         value,
-        key: getKeyFromValue(value, props2.valueKey)
+        key: getKeyFromValue(value, props.valueKey)
       }));
     });
     watch(modelValue, (value) => {
@@ -6100,8 +6031,8 @@ var _Select = defineComponent({
     const computedValueKeys = computed(() => computedValueObjects.value.map((obj) => obj.key));
     const mergedFieldNames = computed(() => __spreadValues(__spreadValues({}, DEFAULT_FIELD_NAMES), fieldNames == null ? void 0 : fieldNames.value));
     const getFallBackOption = (value) => {
-      if (isFunction(props2.fallbackOption)) {
-        return props2.fallbackOption(value);
+      if (isFunction(props.fallbackOption)) {
+        return props.fallbackOption(value);
       }
       return {
         [mergedFieldNames.value.value]: value,
@@ -6111,7 +6042,7 @@ var _Select = defineComponent({
     const getExtraValueData = () => {
       const valueArray = [];
       const keyArray = [];
-      if (props2.allowCreate || props2.fallbackOption) {
+      if (props.allowCreate || props.fallbackOption) {
         for (const item of computedValueObjects.value) {
           if (!keyArray.includes(item.key)) {
             const optionInfo = optionInfoMap.get(item.key);
@@ -6122,7 +6053,7 @@ var _Select = defineComponent({
           }
         }
       }
-      if (props2.allowCreate && computedInputValue.value) {
+      if (props.allowCreate && computedInputValue.value) {
         const key = getKeyFromValue(computedInputValue.value);
         if (!keyArray.includes(key)) {
           const optionInfo = optionInfoMap.get(key);
@@ -6157,7 +6088,7 @@ var _Select = defineComponent({
     const _inputValue = ref("");
     const computedInputValue = computed(() => {
       var _a;
-      return (_a = props2.inputValue) != null ? _a : _inputValue.value;
+      return (_a = props.inputValue) != null ? _a : _inputValue.value;
     });
     watch(computedPopupVisible, (visible) => {
       if (!visible && !retainInputValue.value && computedInputValue.value) {
@@ -6166,7 +6097,7 @@ var _Select = defineComponent({
     });
     const getValueFromValueKeys = (valueKeys) => {
       var _a, _b;
-      if (!props2.multiple) {
+      if (!props.multiple) {
         return (_b = (_a = optionInfoMap.get(valueKeys[0])) == null ? void 0 : _a.value) != null ? _b : "";
       }
       return valueKeys.map((key) => {
@@ -6188,10 +6119,10 @@ var _Select = defineComponent({
       emit("inputValueChange", inputValue);
     };
     const handleSelect = (key, ev) => {
-      if (props2.multiple) {
+      if (props.multiple) {
         if (!computedValueKeys.value.includes(key)) {
           if (enabledOptionKeys.value.includes(key)) {
-            if (props2.limit > 0 && computedValueKeys.value.length >= props2.limit) {
+            if (props.limit > 0 && computedValueKeys.value.length >= props.limit) {
               const info = optionInfoMap.get(key);
               emit("exceedLimit", info == null ? void 0 : info.value, ev);
             } else {
@@ -6221,14 +6152,14 @@ var _Select = defineComponent({
     };
     const handleSearch = debounce((value) => {
       emit("search", value);
-    }, props2.searchDelay);
+    }, props.searchDelay);
     const handleInputValueChange = (inputValue) => {
       if (inputValue !== computedInputValue.value) {
         if (!computedPopupVisible.value) {
           handlePopupVisibleChange(true);
         }
         updateInputValue(inputValue);
-        if (props2.allowSearch) {
+        if (props.allowSearch) {
           handleSearch(inputValue);
         }
       }
@@ -6342,9 +6273,9 @@ var _Select = defineComponent({
     const renderDropDown = () => {
       return createVNode(SelectDropdown, {
         "ref": dropdownRef,
-        "loading": props2.loading,
+        "loading": props.loading,
         "empty": validOptionInfos.value.length === 0,
-        "virtualList": Boolean(props2.virtualListProps),
+        "virtualList": Boolean(props.virtualListProps),
         "onScroll": handleDropdownScroll,
         "onReachBottom": handleDropdownReachBottom
       }, {
@@ -6352,7 +6283,7 @@ var _Select = defineComponent({
           var _a, _b;
           return [...(_b = (_a = slots.default) == null ? void 0 : _a.call(slots)) != null ? _b : [], ...validOptions.value.map(renderOption)];
         },
-        "virtual-list": () => createVNode(VirtualList, mergeProps(props2.virtualListProps, {
+        "virtual-list": () => createVNode(VirtualList, mergeProps(props.virtualListProps, {
           "ref": virtualListRef,
           "data": validOptions.value
         }), {
@@ -6368,12 +6299,12 @@ var _Select = defineComponent({
       data
     }) => {
       var _a, _b, _c;
-      if (slots.label || isFunction(props2.formatLabel)) {
+      if (slots.label || isFunction(props.formatLabel)) {
         const optionInfo = optionInfoMap.get(data.value);
         if (optionInfo == null ? void 0 : optionInfo.raw) {
           return (_c = (_a = slots.label) == null ? void 0 : _a.call(slots, {
             data: optionInfo.raw
-          })) != null ? _c : (_b = props2.formatLabel) == null ? void 0 : _b.call(props2, optionInfo.raw);
+          })) != null ? _c : (_b = props.formatLabel) == null ? void 0 : _b.call(props, optionInfo.raw);
         }
       }
       return data.label;
@@ -6389,28 +6320,28 @@ var _Select = defineComponent({
       "autoFitTransformOrigin": true,
       "disabled": mergedDisabled.value,
       "popupVisible": computedPopupVisible.value,
-      "unmountOnClose": props2.unmountOnClose,
-      "clickToClose": !(props2.allowSearch || props2.allowCreate),
-      "popupContainer": props2.popupContainer,
+      "unmountOnClose": props.unmountOnClose,
+      "clickToClose": !(props.allowSearch || props.allowCreate),
+      "popupContainer": props.popupContainer,
       "onPopupVisibleChange": handlePopupVisibleChange
-    }, props2.triggerProps), {
+    }, props.triggerProps), {
       default: () => {
         var _a, _b;
         return [(_b = (_a = slots.trigger) == null ? void 0 : _a.call(slots)) != null ? _b : createVNode(SelectView, mergeProps({
           "class": prefixCls,
           "modelValue": selectViewValue.value,
           "inputValue": computedInputValue.value,
-          "multiple": props2.multiple,
+          "multiple": props.multiple,
           "disabled": mergedDisabled.value,
           "error": mergedError.value,
-          "loading": props2.loading,
-          "allowClear": props2.allowClear,
-          "allowCreate": props2.allowCreate,
-          "allowSearch": Boolean(props2.allowSearch),
+          "loading": props.loading,
+          "allowClear": props.allowClear,
+          "allowCreate": props.allowCreate,
+          "allowSearch": Boolean(props.allowSearch),
           "opened": computedPopupVisible.value,
-          "maxTagCount": props2.maxTagCount,
-          "placeholder": props2.placeholder,
-          "bordered": props2.bordered,
+          "maxTagCount": props.maxTagCount,
+          "placeholder": props.placeholder,
+          "bordered": props.bordered,
           "size": mergedSize.value,
           "onInputValueChange": handleInputValueChange,
           "onRemove": handleRemove,
@@ -6458,22 +6389,22 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   },
   emits: ["update:modelValue", "change"],
   setup(__props, { emit }) {
-    const props2 = __props;
+    const props = __props;
     const value = ref("");
     const options = ref([]);
     const getOptions = (params) => {
-      const fun = params ? props2.api(params) : props2.api();
+      const fun = params ? props.api(params) : props.api();
       fun.then((res) => {
         let list = res;
-        if (props2.resultField) {
-          list = res[props2.resultField];
+        if (props.resultField) {
+          list = res[props.resultField];
         }
         if (list == null ? void 0 : list.length) {
           options.value = list.map((t) => {
             return {
               ...t,
-              value: t[props2.valueField],
-              label: `${t[props2.labelField]}`
+              value: t[props.valueField],
+              label: `${t[props.labelField]}`
             };
           });
         } else {
@@ -6484,18 +6415,18 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       });
     };
     const getValue = (newVal) => {
-      if (props2.valueType === "object") {
-        if (!newVal && !props2.multiple)
+      if (props.valueType === "object") {
+        if (!newVal && !props.multiple)
           return void 0;
-        if (!newVal && props2.multiple)
+        if (!newVal && props.multiple)
           return [];
-        if (Object.prototype.toString.call(newVal) !== "[object Object]" && !props2.multiple) {
+        if (Object.prototype.toString.call(newVal) !== "[object Object]" && !props.multiple) {
           return {};
         }
-        if (Object.prototype.toString.call(newVal) !== "[object Array]" && props2.multiple) {
+        if (Object.prototype.toString.call(newVal) !== "[object Array]" && props.multiple) {
           return [];
         }
-        if (!props2.multiple) {
+        if (!props.multiple) {
           return newVal == null ? void 0 : newVal.value;
         }
         return newVal.map((t) => t.value);
@@ -6508,14 +6439,14 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const getResult = () => {
       if (!value.value)
         return value.value;
-      if (props2.valueType !== "object")
+      if (props.valueType !== "object")
         return value.value;
-      if (!props2.multiple)
+      if (!props.multiple)
         return getObjectResult(value.value);
       return value.value.map(getObjectResult);
     };
     watch(
-      () => props2.modelValue,
+      () => props.modelValue,
       (newVal) => {
         value.value = getValue(newVal);
         const result = getResult();
@@ -6538,7 +6469,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       }
     };
     onMounted(() => {
-      if (props2.isSearch) {
+      if (props.isSearch) {
         return;
       }
       getOptions();
@@ -6575,13 +6506,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
 });
 const entry = {
   install(app) {
-    app.component(SButton.name, SButton);
     app.component(_sfc_main.name, _sfc_main);
   }
 };
 export {
   _sfc_main as ApiSelect,
-  SButton,
   entry as default
 };
-//# sourceMappingURL=smarty-ui.mjs.map

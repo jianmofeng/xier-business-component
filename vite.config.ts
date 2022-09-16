@@ -21,11 +21,10 @@ export default defineConfig({
   build: {
     rollupOptions,
     minify: false,
-    sourcemap: true,
     lib: {
       entry: "./src/entry.ts",
-      name: "SmartyUI",
-      fileName: "smarty-ui",
+      name: "index",
+      fileName: "index",
       // 导出模块格式
       formats: ["es"],
     },
