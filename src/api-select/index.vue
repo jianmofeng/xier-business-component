@@ -24,6 +24,7 @@ import {
   watch,
   defineProps,
   withDefaults,
+  defineComponent,
 } from 'vue';
 import { Select, Option } from '@arco-design/web-vue';
 
@@ -160,7 +161,7 @@ onMounted(() => {
 </script>
 
 <script lang="ts">
-export default {
+export default defineComponent({
     name: "ApiSelect",
-}
+})
 </script>
