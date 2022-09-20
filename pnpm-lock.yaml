@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@arco-design/web-vue': ^2.36.1
   '@iconify-json/ic': 1.1.4
+  '@types/node': ^18.7.18
   '@vitejs/plugin-vue': 3.0.3
   '@vitejs/plugin-vue-jsx': 2.0.0
   '@vue/compiler-sfc': ^3.2.39
@@ -17,15 +18,18 @@ specifiers:
   vitepress: 0.22.4
   vitepress-theme-demoblock: 1.4.2
   vue: 3.2.37
+  xier-business-component: 0.1.5
 
 dependencies:
   '@vue/compiler-sfc': 3.2.39
   ant-design-vue: 3.2.12_vue@3.2.37
   vue: 3.2.37
+  xier-business-component: 0.1.5
 
 devDependencies:
   '@arco-design/web-vue': 2.36.1_vue@3.2.37
   '@iconify-json/ic': 1.1.4
+  '@types/node': 18.7.18
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.7+vue@3.2.37
   '@vitejs/plugin-vue-jsx': 2.0.0_vite@3.0.7+vue@3.2.37
   axios: 0.27.2
@@ -716,6 +720,10 @@ packages:
 
   /@types/mdurl/1.0.2:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
+    dev: true
+
+  /@types/node/18.7.18:
+    resolution: {integrity: sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==}
     dev: true
 
   /@types/parse-json/4.0.0:
@@ -3260,6 +3268,14 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: true
+
+  /xier-business-component/0.1.5:
+    resolution: {integrity: sha512-AYZScNO3UO/gN5mHIWlSgN5celcA9t1Y/boLsyCTjGoqTJlQp6QWOsXkZeNBrsIf1NXvzn6qALC7Ho5k4t6lLg==}
+    dependencies:
+      '@vue/compiler-sfc': 3.2.39
+      ant-design-vue: 3.2.12_vue@3.2.37
+      vue: 3.2.37
+    dev: false
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}

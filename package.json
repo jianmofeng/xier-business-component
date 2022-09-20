@@ -1,6 +1,6 @@
 {
   "name": "xier-business-component",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "组件库",
   "main": "dist/index.mjs",
   "scripts": {
@@ -12,6 +12,10 @@
     "lint-staged": "npx lint-staged",
     "prepare": "husky install"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,vue}": [
       "prettier --write",
@@ -25,12 +29,17 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "keywords": ["vue", "vitepress", "vite"],
+  "keywords": [
+    "vue",
+    "vitepress",
+    "vite"
+  ],
   "author": "jch",
   "license": "ISC",
   "devDependencies": {
     "@arco-design/web-vue": "^2.36.1",
     "@iconify-json/ic": "1.1.4",
+    "@types/node": "^18.7.18",
     "@vitejs/plugin-vue": "3.0.3",
     "@vitejs/plugin-vue-jsx": "2.0.0",
     "axios": "^0.27.2",
@@ -46,6 +55,7 @@
   "dependencies": {
     "@vue/compiler-sfc": "^3.2.39",
     "ant-design-vue": "^3.2.12",
-    "vue": "3.2.37"
+    "vue": "3.2.37",
+    "xier-business-component": "0.1.5"
   }
 }
