@@ -21,6 +21,7 @@
   },
   "include": [
     "src/**/*",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "./shims-vue.d.ts",
   ]
 }
