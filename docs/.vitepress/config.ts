@@ -4,7 +4,6 @@ const sidebar = {
         {
             text: '通用',
             children: [
-                { text: 'Button 按钮', link: '/components/button/' },
                 { text: 'ApiSelect', link: '/components/api-select/' },
             ]
         },
